@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>eLibrary</title>
+        <center><h1 style="color:aliceblue">Welcome to eLibrary</h1></center>
+    </head>
+    <body bgcolor="659DBD">
+        <center><h3 style="color:aliceblue">Register<h3></center>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <center>First name: <input type="text" name="Firstname" placeholder="Enter Your first name" required><br><br>
+            Last name: <input type="text" name="Lastname" placeholder="Enter Your last name" required><br><br>
+            Email Address: <input type="text" name="Email" placeholder="Enter Your email" required><br><br>
+            Username: <input type="text" name="Username" placeholder="Enter Your Username" required><br><br>
+            Password: <input type="password" name="Password1" placeholder="Enter Your Password" required><br><br>
+            Confirm Password: <input type="password" name="Password2" placeholder="Enter Your Password Again" required><br><br></center>
+            <center>Register as:<input type="radio" id="Member" name="Role" value="Member">
+            <label for "Member">Member</label>
+            <input type="radio" id="Librarian" name="Role" value="Librarian">
+            <label for "Librarian">Librarian</label><br><br>
+            <button id="register">Register</button></center>
+        </form>
+        {% for message in messages %}
+            <strong><h3>{{message}}</h3></strong>
+        {% endfor %}
+    </body>
+</html>

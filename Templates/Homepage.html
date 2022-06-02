@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <Title>eLibrary</Title>
+        <center><h1 style="color:aliceblue">Welcome to eLibrary</h1></center>
+    </head>
+    <body bgcolor="659DBD">
+        {% if user.is_authenticated %}
+        <center><h3 style="color:aliceblue">{{user.first_name}}</h3>
+        <form method="GET" action="/users/Logout">
+            <button type="submit">Logout</button>
+        </form></center>
+        {% if user.is_staff == 1 %}
+        <center><div>
+            <b><li>User Administration</li><br><br>
+            <ul>
+                <a style ="color:white"; href="/apis/User_View"><li>View</li><br><br>
+                <a style ="color:white"; href="/users/Register"><li>Add</li><br><br>
+                <a style ="color:white"; href="/apis/User_Update"><li>Update</li><br><br>
+                <a style ="color:white"; href="/apis/User_Delete"><li>Remove</li></a><br><br>
+            </ul>
+            <b><li>Books Administration</li><br><br>
+            <ul>
+                <a style ="color:white"; href="/api/Book_View"><li>View</li><br><br>
+                <a style ="color:white"; href="/api/Book_Create"><li>Add</li><br><br>
+                <a style ="color:white"; href="/api/Book_Update"><li>Update</li><br><br>
+                <a style ="color:white"; href="/api/Book_Delete"><li>Remove</li><br><br>
+            </ul>
+        </div></center>
+        {% elif user.is_staff == 0 %}
+        <center><div>
+            <ul>
+                <b><li>Account</li><br><br>
+                <a style ="color:white"; href="/apis/User_Delete/{{user.id}}"><li>Remove Account</li></a><br><br>
+            </ul>
+            <ul>
+                <b><li>Book</li><br><br>
+                <a style ="color:white"; href="/api/Book_View"><li>View</li><br><br>
+                <a style ="color:white"; href="/api/Book_Return"><li>Return</li><br><br>
+                <a style ="color:white"; href="/api/Book_Borrow"><li>Borrow</li><br><br>
+            </ul>
+        </div></center>
+        {% endif %}
+
+        {% else %}
+        <center><h3 style="color:aliceblue">Login or SignUp<h3></h3>
+        <form method="GET" action="/users/Login">
+            <button type="submit">Login</button>
+        </form>
+        <form method="GET" action="/users/Register">
+            <button type="submit">SignUp</button>   
+        </form></center>
+        {% endif %}
+    </body>
+</html>
